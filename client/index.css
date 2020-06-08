@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+canvas {
+  vertical-align: middle;
+}
+
+#app {
+  display: flex;
+}
+
+#cams {
+  flex-direction: column;
+}

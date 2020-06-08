@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "es6"],
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "target": "es5"
+  },
+  "strict": true
+}
