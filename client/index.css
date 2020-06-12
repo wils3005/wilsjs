@@ -6,7 +6,7 @@ canvas {
   vertical-align: middle;
 }
 
-#app {
+#root {
   display: flex;
 }
 

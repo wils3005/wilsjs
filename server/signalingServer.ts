@@ -1,61 +1,51 @@
-import Express from "express";
-import ExpressPinoLogger from "express-pino-logger";
-import Pino from "pino";
+import * as express from "express";
+import * as peer from "peer";
+import { Foo } from ".";
+import { PeerClient } from "./types";
 
-import { ExpressPeerServer } from "peer";
-import WebSocketLib from "ws";
+const { HOST, SIGNALING_SERVER_PORT, PROXIED } = process.env;
 
-const {
-  HOST,
-  PINO_OPTIONS = "{}",
-  SIGNALING_SERVER_PORT,
-  PROXIED,
-} = process.env;
-
-const app = Express();
-const loggerOptions = JSON.parse(PINO_OPTIONS) as Pino.LoggerOptions;
-const logger = Pino(loggerOptions);
-app.use(ExpressPinoLogger(loggerOptions));
+const { app, logger } = new Foo();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-const httpServer = app.listen(Number(SIGNALING_SERVER_PORT), () => {
+const afterListen = (): void =>
   logger.info(
     `Signaling server listening at http://${HOST}:${SIGNALING_SERVER_PORT}!`
   );
-});
 
-const peerServer = ExpressPeerServer(httpServer, {
+////////////////////////////////////////////////////////////////////////////////
+const clients: Set<PeerClient> = new Set();
+
+const httpServer = app.listen(Number(SIGNALING_SERVER_PORT), afterListen);
+
+////////////////////////////////////////////////////////////////////////////////
+const handleConnection = (client: PeerClient): void => {
+  clients.add(client);
+  logger.info(`Client ${client.getId()} connected!`);
+};
+
+const handleDisconnect = (client: PeerClient): void => {
+  clients.delete(client);
+  logger.info(`Client ${client.getId()} disconnected!`);
+};
+
+const handleGetClients = (
+  _req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+): void => {
+  const body = [...clients].map((client: PeerClient) => client.id);
+  res.json(body);
+  next();
+};
+
+const peerServer = peer.ExpressPeerServer(httpServer, {
   proxied: Boolean(PROXIED),
 });
 
-interface Client {
-  id?: string;
-  getId(): string;
-  getToken(): string;
-  getSocket(): WebSocketLib | null;
-  setSocket(socket: WebSocketLib | null): void;
-  getLastPing(): number;
-  setLastPing(lastPing: number): void;
-  send(data: any): void;
-}
-
-const clients: Set<Client> = new Set();
-
-peerServer.on("connection", (client) => {
-  clients.add(client);
-  logger.info(`Client ${client.getId()} connected!`);
-});
-
-peerServer.on("disconnect", (client) => {
-  clients.delete(client);
-  logger.info(`Client ${client.getId()} disconnected!`);
-});
-
+////////////////////////////////////////////////////////////////////////////////
+peerServer.on("connection", handleConnection);
+peerServer.on("disconnect", handleDisconnect);
 app.use("/", peerServer);
-
-app.get("/clients", (_req, res, next) => {
-  const body = [...clients].map((client) => client.id);
-  res.json(body);
-  next();
-});
+app.get("/clients", handleGetClients);

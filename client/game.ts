@@ -1,4 +1,3 @@
-import React from "react";
 import { default as scene } from "./scenes/breakout";
 
 const foo =
@@ -23,9 +22,5 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
   scene,
   type: Phaser.AUTO,
 };
-
-export function Component() {
-  return <div id="game"></div>;
-}
 
 new Phaser.Game(gameConfig);

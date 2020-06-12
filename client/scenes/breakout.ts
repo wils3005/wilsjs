@@ -1,3 +1,5 @@
+import Phaser from "phaser";
+
 const settingsConfig: Phaser.Types.Scenes.SettingsConfig = {
   key: "Scene",
 };

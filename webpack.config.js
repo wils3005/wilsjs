@@ -3,12 +3,6 @@ const DotenvWebpackPlugin = require("dotenv-webpack");
 
 module.exports = {
   entry: "./client/index.tsx",
-  externals: {
-    peerjs: "Peer",
-    phaser: "Phaser",
-    react: "React",
-    "react-dom": "ReactDOM",
-  },
   mode: "development",
   module: {
     rules: [
@@ -29,7 +23,7 @@ module.exports = {
   },
   plugins: [new DotenvWebpackPlugin()],
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
   },
   stats: "verbose",
 };

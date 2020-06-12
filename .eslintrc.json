@@ -17,21 +17,28 @@
   ],
   "overrides": [
     {
-      "files": ["**/*.ts"],
-      "extends": [
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:import/typescript"
-      ],
+      "files": ["**/*.ts", "**/*.tsx"],
+      "extends": ["plugin:@typescript-eslint/all", "plugin:import/typescript"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": ["tsconfig.eslint.json"]
+      },
+      "rules": {
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-extra-parens": "off",
+        "@typescript-eslint/no-magic-numbers": "off",
+        "@typescript-eslint/prefer-readonly-parameter-types": "off",
+        "@typescript-eslint/space-before-function-paren": "off"
       }
     }
   ],
   "parserOptions": {
     "sourceType": "module"
   },
-  "root": true
+  "root": true,
+  "rules": {
+    "import/no-relative-parent-imports": "error",
+    "sort-imports": "error"
+  }
 }

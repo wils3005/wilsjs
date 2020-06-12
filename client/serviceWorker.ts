@@ -1,7 +1,7 @@
 interface MyServiceWorkerConfig {
   onSuccess(registration: ServiceWorkerRegistration): void;
   onUpdate(registration: ServiceWorkerRegistration): void;
-  [key: string]: any;
+  [index: string]: unknown;
 }
 
 const { hostname, origin } = window.location;
@@ -17,32 +17,22 @@ const scriptURL = `${process.env.PUBLIC_URL}/service-worker.js`;
 ////////////////////////////////////////////////////////////////////////////////
 // functions
 
-function logLocalhostBlurb() {
+const logLocalhostBlurb = () =>
   console.log(
     "This web app is being served cache-first by a service " +
       "worker. To learn more, visit https://bit.ly/CRA-PWA"
   );
-}
 
-function logError(error: Error) {
-  console.error(error);
-}
+const logError = (error: Error) => console.error(error);
+const reloadWindow = () => window.location.reload();
 
-function reloadWindow() {
-  window.location.reload();
-}
-
-function unregisterAndReloadWindow(registration: ServiceWorkerRegistration) {
+const unregisterAndReloadWindow = (registration: ServiceWorkerRegistration) =>
   registration.unregister().then(reloadWindow).catch(logError);
-}
 
-function unregisterServiceWorker(
-  registration: ServiceWorkerRegistration
-): void {
+const unregisterServiceWorker = (registration: ServiceWorkerRegistration) =>
   registration.unregister().catch(logError);
-}
 
-function registerValidSW(config: MyServiceWorkerConfig) {
+const registerValidSW = (config: MyServiceWorkerConfig) => {
   const addUpdateFoundHandler = (registration: ServiceWorkerRegistration) => {
     const handleUpdateFound = () => {
       const installingWorker = registration.installing;
@@ -68,9 +58,9 @@ function registerValidSW(config: MyServiceWorkerConfig) {
     .register(scriptURL)
     .then(addUpdateFoundHandler)
     .catch(logError);
-}
+};
 
-function checkValidServiceWorker(config: MyServiceWorkerConfig) {
+const checkValidServiceWorker = (config: MyServiceWorkerConfig) => {
   const handleFulfilled = (response: Response) => {
     const contentType = response.headers.get("content-type");
 
@@ -89,12 +79,12 @@ function checkValidServiceWorker(config: MyServiceWorkerConfig) {
   fetch(scriptURL, { headers: { "Service-Worker": "script" } })
     .then(handleFulfilled)
     .catch(logError);
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // exports
 
-export function register(config?: MyServiceWorkerConfig): void {
+export const register = (config?: MyServiceWorkerConfig): void => {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== origin) return;
@@ -110,10 +100,10 @@ export function register(config?: MyServiceWorkerConfig): void {
 
     window.addEventListener("load", handleLoad);
   }
-}
+};
 
-export function unregister(): void {
+export const unregister = (): void => {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.ready.then(unregisterServiceWorker).catch(logError);
   }
-}
+};

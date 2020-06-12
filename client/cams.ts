@@ -1,5 +1,4 @@
 import { default as Peer } from "peerjs";
-import { default as React } from "react";
 
 interface MyConnection extends Peer.MediaConnection {
   element?: HTMLVideoElement;
@@ -56,14 +55,6 @@ function handleCall(connection: Peer.MediaConnection) {
 
 function addStreamToVideoElement(stream: MediaStream) {
   document.querySelector<HTMLVideoElement>("#local-video").srcObject = stream;
-}
-
-export function Component() {
-  return (
-    <div id="cams">
-      <video id="local-video" autoPlay muted></video>
-    </div>
-  );
 }
 
 navigator.mediaDevices
