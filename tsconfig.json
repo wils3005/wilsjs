@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "jsx": "react",
     "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es2020"],
+    "lib": ["DOM", "ES2019"],
     "module": "commonjs",
-    "noEmitOnError": true,
+    "noEmit": true,
+    "strict": true,
     "target": "es5"
-  },
-  "strict": true
+  }
 }

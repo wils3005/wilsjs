@@ -21,13 +21,11 @@ const peer = new Peer({
 
 const myConnections: Set<MyConnection> = new Set();
 
-function logError(error: Error) {
-  console.error(error);
-}
+const logError = (error: Error): void => console.error(error);
 
-function callPeers(ids: string[]) {
+const callPeers = (ids: string[]): void => {
   for (const id of ids) {
-    const callPeer = (stream: MediaStream) => {
+    const callPeer = (stream: MediaStream): void => {
       const connection = peer.call(id, stream);
       myConnections.add(connection);
       // addStreamToRemoteVideoElement(connection);
@@ -38,9 +36,9 @@ function callPeers(ids: string[]) {
       .then(callPeer)
       .catch(logError);
   }
-}
+};
 
-function handleCall(connection: Peer.MediaConnection) {
+const handleCall = (connection: Peer.MediaConnection): void => {
   const answerPeer = (stream: MediaStream): void => {
     myConnections.add(connection);
     // addStreamToRemoteVideoElement(connection);
@@ -51,11 +49,11 @@ function handleCall(connection: Peer.MediaConnection) {
     .getUserMedia(streamConstraints)
     .then(answerPeer)
     .catch(logError);
-}
+};
 
-function addStreamToVideoElement(stream: MediaStream) {
+const addStreamToVideoElement = (stream: MediaStream): void => {
   document.querySelector<HTMLVideoElement>("#local-video").srcObject = stream;
-}
+};
 
 navigator.mediaDevices
   .getUserMedia(streamConstraints)
@@ -63,7 +61,7 @@ navigator.mediaDevices
   .catch(logError);
 
 fetch(process.env.CLIENTS_URL)
-  .then((response) => response.json())
+  .then(async (response: Response) => response.json())
   .then(callPeers)
   .catch(logError);
 

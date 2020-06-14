@@ -1,9 +1,3 @@
-interface MyServiceWorkerConfig {
-  onSuccess(registration: ServiceWorkerRegistration): void;
-  onUpdate(registration: ServiceWorkerRegistration): void;
-  [index: string]: unknown;
-}
-
 const { hostname, origin } = window.location;
 
 const isLocalhost = Boolean(
@@ -17,20 +11,23 @@ const scriptURL = `${process.env.PUBLIC_URL}/service-worker.js`;
 ////////////////////////////////////////////////////////////////////////////////
 // functions
 
-const logLocalhostBlurb = () =>
+const logLocalhostBlurb = (): void =>
   console.log(
     "This web app is being served cache-first by a service " +
       "worker. To learn more, visit https://bit.ly/CRA-PWA"
   );
 
-const logError = (error: Error) => console.error(error);
-const reloadWindow = () => window.location.reload();
+const logError = (error: Error): void => console.error(error);
+const reloadWindow = (): void => window.location.reload();
 
-const unregisterAndReloadWindow = (registration: ServiceWorkerRegistration) =>
+const unregisterAndReloadWindow = async (
+  registration: ServiceWorkerRegistration
+): Promise<void> =>
   registration.unregister().then(reloadWindow).catch(logError);
 
-const unregisterServiceWorker = (registration: ServiceWorkerRegistration) =>
-  registration.unregister().catch(logError);
+const unregisterServiceWorker = async (
+  registration: ServiceWorkerRegistration
+): Promise<boolean | void> => registration.unregister().catch(logError);
 
 const registerValidSW = (config: MyServiceWorkerConfig) => {
   const addUpdateFoundHandler = (registration: ServiceWorkerRegistration) => {

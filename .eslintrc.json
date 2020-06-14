@@ -21,7 +21,7 @@
       "extends": ["plugin:@typescript-eslint/all", "plugin:import/typescript"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "project": ["tsconfig.eslint.json"]
+        "project": ["tsconfig.json"]
       },
       "rules": {
         "@typescript-eslint/indent": "off",
@@ -38,7 +38,12 @@
   },
   "root": true,
   "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "func-names": ["error", "always"],
+    "func-style": ["error", "expression"],
     "import/no-relative-parent-imports": "error",
+    "prefer-arrow-callback": "error",
+    "require-atomic-updates": "error",
     "sort-imports": "error"
   }
 }

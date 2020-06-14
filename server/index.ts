@@ -9,11 +9,11 @@ import http from "http";
 import { monitor } from "@colyseus/monitor";
 
 const {
-  ADMIN_PASSWORD,
+  ADMIN_PASSWORD = "",
   HOST,
   GAME_SERVER_PORT,
   PINO_OPTIONS = "{}",
-  PUBLIC_PATH,
+  PUBLIC_PATH = "",
 } = process.env;
 
 ////////////////////////////////////////////////////////////////////////////////
