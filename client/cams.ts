@@ -52,7 +52,8 @@ const handleCall = (connection: Peer.MediaConnection): void => {
 };
 
 const addStreamToVideoElement = (stream: MediaStream): void => {
-  document.querySelector<HTMLVideoElement>("#local-video").srcObject = stream;
+  const e = document.querySelector<HTMLVideoElement>("#local-video");
+  if (e instanceof HTMLVideoElement) e.srcObject = stream;
 };
 
 navigator.mediaDevices
@@ -60,7 +61,7 @@ navigator.mediaDevices
   .then(addStreamToVideoElement)
   .catch(logError);
 
-fetch(process.env.CLIENTS_URL)
+fetch(String(process.env.CLIENTS_URL))
   .then(async (response: Response) => response.json())
   .then(callPeers)
   .catch(logError);

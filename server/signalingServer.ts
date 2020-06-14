@@ -1,17 +1,18 @@
 import * as express from "express";
 import * as peer from "peer";
-import { Foo } from ".";
+import Foo from "./Foo";
 import { PeerClient } from "./types";
 
-const { HOST, SIGNALING_SERVER_PORT, PROXIED } = process.env;
+const { HOST = "", SIGNALING_SERVER_PORT = "", PROXIED = "" } = process.env;
 
 const { app, logger } = new Foo();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-const afterListen = (): void =>
+const afterListen = (...args: unknown[]): void =>
   logger.info(
-    `Signaling server listening at http://${HOST}:${SIGNALING_SERVER_PORT}!`
+    `Signaling server listening at http://${HOST}:${SIGNALING_SERVER_PORT}!`,
+    ...args
   );
 
 ////////////////////////////////////////////////////////////////////////////////

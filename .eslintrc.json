@@ -40,7 +40,6 @@
   "rules": {
     "arrow-parens": ["error", "as-needed"],
     "func-names": ["error", "always"],
-    "func-style": ["error", "expression"],
     "import/no-relative-parent-imports": "error",
     "prefer-arrow-callback": "error",
     "require-atomic-updates": "error",
