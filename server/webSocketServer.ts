@@ -1,14 +1,32 @@
-import ws from "ws";
+import WebSocket from "ws";
+import { logger } from "./logger";
 
-const { HOST = "", WS_PORT = "" } = process.env;
+const { HOST, WEBSOCKET_PORT } = process.env;
 
-const options: ws.ServerOptions = { host: HOST, port: Number(WS_PORT) };
-const webSocketServer = new ws.Server(options);
+const host = String(HOST);
+const port = Number(WEBSOCKET_PORT);
 
-const handleConnection = (client: ws): void => {
-  console.log({ client });
-  const data = "hello world";
-  client.send(data);
+const options: WebSocket.ServerOptions = {
+  host,
+  port,
 };
 
-webSocketServer.addListener("connection", handleConnection);
+const webSocketServer = new WebSocket.Server(options);
+
+const handleMessage = (data: WebSocket.Data): void => {
+  logger.info({ data }, __filename);
+
+  for (const client of webSocketServer.clients) {
+    client.send(`Message broadcast: ${String(data)}`);
+  }
+};
+
+const handleError = (error: Error): void => logger.error({ error }, __filename);
+
+const handleServerConnection = (webSocket: WebSocket): void => {
+  webSocket.on("message", handleMessage);
+  webSocket.on("error", handleError);
+};
+
+webSocketServer.on("connection", handleServerConnection);
+webSocketServer.on("error", handleError);

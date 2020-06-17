@@ -1,24 +1,24 @@
 import * as express from "express";
 import * as peer from "peer";
-import Foo from "./Foo";
+import { logger, middleware as loggerMiddleware } from "./logger";
 import { PeerClient } from "./types";
 
-const { HOST = "", SIGNALING_SERVER_PORT = "", PROXIED = "" } = process.env;
+const { HOST = "", SIGNALING_PORT = "", PROXIED = "" } = process.env;
 
-const { app, logger } = new Foo();
+const app = express.default();
 
 ////////////////////////////////////////////////////////////////////////////////
 
 const afterListen = (...args: unknown[]): void =>
   logger.info(
-    `Signaling server listening at http://${HOST}:${SIGNALING_SERVER_PORT}!`,
+    `Signaling server listening at http://${HOST}:${SIGNALING_PORT}!`,
     ...args
   );
 
 ////////////////////////////////////////////////////////////////////////////////
 const clients: Set<PeerClient> = new Set();
 
-const httpServer = app.listen(Number(SIGNALING_SERVER_PORT), afterListen);
+const httpServer = app.listen(Number(SIGNALING_PORT), afterListen);
 
 ////////////////////////////////////////////////////////////////////////////////
 const handleConnection = (client: PeerClient): void => {
@@ -46,7 +46,8 @@ const peerServer = peer.ExpressPeerServer(httpServer, {
 });
 
 ////////////////////////////////////////////////////////////////////////////////
-peerServer.on("connection", handleConnection);
-peerServer.on("disconnect", handleDisconnect);
+app.use(loggerMiddleware);
 app.use("/", peerServer);
 app.get("/clients", handleGetClients);
+peerServer.on("connection", handleConnection);
+peerServer.on("disconnect", handleDisconnect);

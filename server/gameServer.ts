@@ -1,19 +1,14 @@
 import * as colyseus from "colyseus";
 import * as express from "express";
-import Foo from "./Foo";
+import { logger, middleware as loggerMiddleware } from "./logger";
 import { Schema } from "@colyseus/schema";
 import basicAuth from "express-basic-auth";
 import http from "http";
 import { monitor } from "@colyseus/monitor";
 
-const {
-  ADMIN_PASSWORD = "",
-  GAME_SERVER_PORT = "",
-  HOST = "",
-  PUBLIC_PATH = "",
-} = process.env;
+const { ADMIN_PASSWORD = "", GAME_PORT = "", HOST = "" } = process.env;
 
-const { app, logger } = new Foo();
+const app = express.default();
 
 ////////////////////////////////////////////////////////////////////////////////
 const httpServer = http.createServer(app);
@@ -28,7 +23,7 @@ const gameServer = new colyseus.Server({
 class MyColyseusRoom extends colyseus.Room<MyColyseusSchema> {}
 
 const logListening = (): void =>
-  logger.info(`Game server listening at http://${HOST}:${GAME_SERVER_PORT}!`);
+  logger.info(`Game server listening at http://${HOST}:${GAME_PORT}!`);
 
 const logError = (error: Error): void => logger.error(error);
 
@@ -47,13 +42,10 @@ const basicAuthOptions: basicAuth.BasicAuthMiddlewareOptions = {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-app.use("/", express.static(PUBLIC_PATH));
+app.use(loggerMiddleware);
 app.use("/:gameId", handleGame);
 app.use("/colyseus", basicAuth(basicAuthOptions), monitor());
 
 gameServer.define("arena", MyColyseusRoom);
 
-gameServer
-  .listen(Number(GAME_SERVER_PORT), HOST)
-  .then(logListening)
-  .catch(logError);
+gameServer.listen(Number(GAME_PORT), HOST).then(logListening).catch(logError);
