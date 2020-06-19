@@ -1,4 +1,4 @@
-import { default as Peer } from "peerjs";
+import Peer from "peerjs";
 
 interface MyConnection extends Peer.MediaConnection {
   element?: HTMLVideoElement;
@@ -61,7 +61,9 @@ navigator.mediaDevices
   .then(addStreamToVideoElement)
   .catch(logError);
 
-fetch(String(process.env.CLIENTS_URL))
+const clientsUrl = String(process.env.CLIENTS_URL);
+
+fetch(clientsUrl)
   .then(async (response: Response) => response.json())
   .then(callPeers)
   .catch(logError);

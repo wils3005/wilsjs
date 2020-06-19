@@ -1,7 +1,10 @@
-import { ColouredShape } from "./types";
-
 const shapes = ["ghost", "mouse", "chair", "bottle", "book"];
 const colours = ["white", "grey", "red", "green", "blue"];
+
+interface ColouredShape {
+  colour: string;
+  shape: string;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 const getColouredShapes = (colour: string): ColouredShape[] => {

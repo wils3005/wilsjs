@@ -1,0 +1,13 @@
+{
+  "name": "websocket-server",
+  "version": "0.1.0",
+  "scripts": {
+    "check": "../../node_modules/.bin/npm-check -u",
+    "start": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly ./index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "pino": "6.3.2",
+    "ws": "7.3.0"
+  }
+}

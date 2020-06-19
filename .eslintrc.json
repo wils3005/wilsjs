@@ -38,11 +38,7 @@
   },
   "root": true,
   "rules": {
-    "arrow-parens": ["error", "as-needed"],
-    "func-names": ["error", "always"],
     "import/no-relative-parent-imports": "error",
-    "prefer-arrow-callback": "error",
-    "require-atomic-updates": "error",
     "sort-imports": "error"
   }
 }
