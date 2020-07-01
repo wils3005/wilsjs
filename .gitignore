@@ -1,4 +1,6 @@
-coverage/
+**/build
+!**/build/**/*.{css,html,js}
+**/coverage/
 **/node_modules/
 
 .env

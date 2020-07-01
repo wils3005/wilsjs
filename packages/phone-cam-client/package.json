@@ -1,0 +1,9 @@
+{
+  "name": "phone-cam-client",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "../../node_modules/.bin/webpack --mode production",
+    "start": "../../node_modules/.bin/webpack --watch"
+  },
+  "dependencies": {}
+}

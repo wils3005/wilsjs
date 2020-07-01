@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  # nginx:
+  #   build:
+  #     context: ./nginx
+  #     dockerfile: ./nginx/Dockerfile
+  #   env_file: .env
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   volumes:
+  #     - ./public:/usr/share/nginx/html
+  #     - nginx-letsencrypt:/etc/letsencrypt/live/wils.ca/
+
+  peer-server:
+    build:
+      context: ./packages/peer-server/build
+      dockerfile: ./packages/peer-server/Dockerfile
+    env_file: ./packages/peer-server/.env
+    image: flumpjs-peer-server
+    ports:
+      - 3002:3002
+
+  websocket-server:
+    build:
+      context: ./packages/websocket-server/build
+      dockerfile: ./packages/websocket-server/Dockerfile
+    env_file: ./packages/websocket-server/.env
+    image: flumpjs-websocker-server
+    ports:
+      - 3003:3003
+
+volumes:
+# nginx-letsencrypt:
+# $ env $(xargs < .env) docker login --username "$DOCKER_LOGIN" --password "$DOCKER_PASSWORD"

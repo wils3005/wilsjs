@@ -15,58 +15,59 @@ const streamConstraints = {
 
 const peer = new Peer({
   host: process.env.HOST,
-  port: Number(process.env.SIGNALING_SERVER_PORT),
+  port: Number(process.env.PORT),
   path: "/",
 });
 
 const myConnections: Set<MyConnection> = new Set();
 
-const logError = (error: Error): void => console.error(error);
+const handleError = (error: Error): void => console.error(error);
 
+// outgoing calls
 const callPeers = (ids: string[]): void => {
   for (const id of ids) {
     const callPeer = (stream: MediaStream): void => {
       const connection = peer.call(id, stream);
       myConnections.add(connection);
-      // addStreamToRemoteVideoElement(connection);
     };
 
     navigator.mediaDevices
       .getUserMedia(streamConstraints)
       .then(callPeer)
-      .catch(logError);
+      .catch(handleError);
   }
 };
 
+// incoming calls
 const handleCall = (connection: Peer.MediaConnection): void => {
   const answerPeer = (stream: MediaStream): void => {
     myConnections.add(connection);
-    // addStreamToRemoteVideoElement(connection);
     connection.answer(stream);
   };
 
   navigator.mediaDevices
     .getUserMedia(streamConstraints)
     .then(answerPeer)
-    .catch(logError);
+    .catch(handleError);
 };
 
 const addStreamToVideoElement = (stream: MediaStream): void => {
-  const e = document.querySelector<HTMLVideoElement>("#local-video");
+  const e = document.querySelector<HTMLVideoElement>("video");
   if (e instanceof HTMLVideoElement) e.srcObject = stream;
 };
 
+////////////////////////////////////////////////////////////////////////////////
 navigator.mediaDevices
   .getUserMedia(streamConstraints)
   .then(addStreamToVideoElement)
-  .catch(logError);
+  .catch(handleError);
 
-const clientsUrl = String(process.env.CLIENTS_URL);
+const clientsURL = String(process.env.CLIENTS_URL);
 
-fetch(clientsUrl)
+fetch(clientsURL)
   .then(async (response: Response) => response.json())
   .then(callPeers)
-  .catch(logError);
+  .catch(handleError);
 
 peer.on("call", handleCall);
-peer.on("error", logError);
+peer.on("error", handleError);
