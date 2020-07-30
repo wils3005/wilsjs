@@ -16,7 +16,7 @@ const streamConstraints = {
 const peer = new Peer({
   host: process.env.HOST,
   port: Number(process.env.PORT),
-  path: "/",
+  path: "/api",
 });
 
 const myConnections: Set<MyConnection> = new Set();
@@ -51,20 +51,19 @@ const handleCall = (connection: Peer.MediaConnection): void => {
     .catch(handleError);
 };
 
-const addStreamToVideoElement = (stream: MediaStream): void => {
+const addStreamToVideoElement = (mediaStream: MediaStream): void => {
   const e = document.querySelector<HTMLVideoElement>("video");
-  if (e instanceof HTMLVideoElement) e.srcObject = stream;
+  if (e instanceof HTMLVideoElement) e.srcObject = mediaStream;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+
 navigator.mediaDevices
   .getUserMedia(streamConstraints)
   .then(addStreamToVideoElement)
   .catch(handleError);
 
-const clientsURL = String(process.env.CLIENTS_URL);
-
-fetch(clientsURL)
+fetch("/api/clients")
   .then(async (response: Response) => response.json())
   .then(callPeers)
   .catch(handleError);

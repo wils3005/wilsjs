@@ -28,9 +28,10 @@ const peerServer = peer.ExpressPeerServer(httpServer, {
 });
 
 app.use(expressPinoLogger.default(loggerOptions));
-app.use("/", peerServer);
+app.use("/", express.static("src"));
+app.use("/api", peerServer);
 
-app.get("/clients", (_req: express.Request, res: express.Response) => {
+app.get("/api/clients", (_req: express.Request, res: express.Response) => {
   res.json([...clients].map((client: Client) => client.id));
 });
 

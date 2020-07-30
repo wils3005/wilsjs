@@ -1,9 +1,10 @@
 require("dotenv").config();
 const DotenvWebpackPlugin = require("dotenv-webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: `${__dirname}/src/index.ts`,
+  entry: {
+    phone: "./src/phone/index.ts",
+  },
   mode: "development",
   module: {
     rules: [
@@ -24,10 +25,9 @@ module.exports = {
     ],
   },
   output: {
-    filename: "bundle.js",
     path: `${__dirname}/build`,
   },
-  plugins: [new DotenvWebpackPlugin(), new HtmlWebpackPlugin()],
+  plugins: [new DotenvWebpackPlugin()],
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
   },

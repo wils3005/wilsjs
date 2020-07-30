@@ -1,6 +1,9 @@
 {
   "collectCoverage": true,
-  "collectCoverageFrom": ["**/*.ts", "!**/*.test.ts"],
+  "collectCoverageFrom": [
+    "src/*.{js,jsx,ts,tsx}",
+    "!src/*.test.{js,jsx,ts,tsx}"
+  ],
   "coverageDirectory": "coverage",
   "coverageReporters": ["html", "text"],
   "coverageThreshold": {
@@ -11,6 +14,6 @@
       "statements": 1
     }
   },
-  "preset": "ts-jest",
+  "preset": "ts-jest/presets/js-with-ts",
   "testEnvironment": "node"
 }
