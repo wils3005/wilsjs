@@ -1,11 +1,9 @@
 {
   "name": "mike-cam",
-  "version": "0.1.0",
   "scripts": {
     "webpack": "../../node_modules/.bin/webpack --mode production",
-    "build": "npm run clean && ../../node_modules/.bin/tsc --build tsconfig.build.json",
+    "build": "rm -rf build/ && ../../node_modules/.bin/tsc --build tsconfig.build.json",
     "check": "../../node_modules/.bin/npm-check -u",
-    "clean": "rm -rf build/",
     "docker-build": "npm run build && docker build --tag mike-cam .",
     "docker-run": "docker run --detach --env-file .env --name mike-cam-1 --publish 3002:3002 mike-cam",
     "watch": "../../node_modules/.bin/webpack --watch",
