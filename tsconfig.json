@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "jsx": "react",
+    "checkJs": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["DOM", "ES2019"],
+    "jsx": "react",
     "module": "commonjs",
-    "noEmit": true,
-    "strict": true,
-    "target": "ES2019"
+    "outDir": "build/",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "strict": true
   }
 }

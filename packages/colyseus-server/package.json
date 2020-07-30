@@ -2,9 +2,8 @@
   "name": "colyseus-server",
   "version": "0.1.0",
   "scripts": {
-    "check": "../../node_modules/.bin/npm-check -u",
-    "start": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly ./index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf build/ && ../../node_modules/.bin/tsc --build ./tsconfig.build.json",
+    "start": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly src/index.ts"
   },
   "dependencies": {
     "@colyseus/monitor": "0.12.2",
