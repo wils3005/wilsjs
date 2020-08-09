@@ -1,5 +1,5 @@
 {
-  "name": "phone-cam-client",
+  "name": "@wilsjs/phone-cam-client",
   "version": "0.1.0",
   "scripts": {
     "build": "../../node_modules/.bin/webpack --mode production",

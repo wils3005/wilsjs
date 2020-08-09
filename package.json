@@ -1,5 +1,5 @@
 {
-  "name": "wilsjs",
+  "name": "@wilsjs/root",
   "private": true,
   "scripts": {
     "check": "npm-check --update",
@@ -66,10 +66,10 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
-    "colyseus-server": "file:packages/colyseus-server",
-    "my-sqlite3": "file:packages/my-sqlite3",
-    "peer-server": "file:packages/peer-server",
-    "phone-cam-client": "file:packages/phone-cam-client",
-    "websocket-server": "file:packages/websocket-server"
+    "@wilsjs/colyseus": "file:packages/colyseus",
+    "@wilsjs/peer": "file:packages/peer",
+    "@wilsjs/phone-cam-client": "file:packages/phone-cam-client",
+    "@wilsjs/sqlite3": "file:packages/sqlite3",
+    "@wilsjs/ws": "file:packages/ws"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "my-sqlite3",
+  "name": "@wilsjs/sqlite3",
   "scripts": {
     "build": "rm -rf build/ && ../../node_modules/.bin/tsc --build ./tsconfig.build.json",
     "start": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly src/index.ts"

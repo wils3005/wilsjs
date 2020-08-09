@@ -8,7 +8,6 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "module": "commonjs",
-    "noEmit": true,
     "outDir": "build/",
     "paths": {},
     "removeComments": true,
