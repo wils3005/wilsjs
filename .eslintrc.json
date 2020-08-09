@@ -17,12 +17,14 @@
   ],
   "overrides": [
     {
-      "files": ["**/*.ts", "**/*.tsx"],
       "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:import/typescript"
-      ]
+      ],
+      "files": ["**/*.ts", "**/*.tsx"],
+      "plugins": ["eslint-plugin-tsdoc"],
+      "rules": { "tsdoc/syntax": "warn" }
     }
   ],
   "parser": "@typescript-eslint/parser",
