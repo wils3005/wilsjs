@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "../../node_modules/.bin/webpack --mode production",
+    "check": "../../node_modules/.bin/npm-check --update-all",
     "start": "../../node_modules/.bin/webpack --watch"
   },
   "dependencies": {}

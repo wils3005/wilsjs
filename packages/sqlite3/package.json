@@ -2,6 +2,7 @@
   "name": "@wilsjs/sqlite3",
   "scripts": {
     "build": "rm -rf build/ && ../../node_modules/.bin/tsc --build ./tsconfig.build.json",
+    "check": "../../node_modules/.bin/npm-check --update-all",
     "start": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly src/index.ts"
   },
   "dependencies": {
