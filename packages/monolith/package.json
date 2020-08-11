@@ -1,0 +1,33 @@
+{
+  "name": "@wilsjs/monolith",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf build/ && ../../node_modules/.bin/tsc --build ./tsconfig.build.server.json",
+    "check": "../../node_modules/.bin/npm-check --update-all",
+    "knex": "npm run ts-node -- ./node_modules/.bin/knex --knexfile db/knexfile.ts",
+    "knex-migrate": "npm run knex migrate:latest",
+    "knex-seed": "npm run knex seed:run",
+    "server": "../../node_modules/.bin/ts-node-dev --require dotenv/config --respawn --transpileOnly src/server/index.ts",
+    "ts-node": "node --require dotenv/config --require ts-node/register",
+    "webpack": "npm run ts-node -- ../../node_modules/.bin/webpack",
+    "webpack-production": "npm run webpack --mode production",
+    "webpack-watch": "npm run webpack --watch"
+  },
+  "dependencies": {
+    "bcrypt": "5.0.0",
+    "connect-session-knex": "1.7.3",
+    "express": "4.17.1",
+    "express-session": "1.17.1",
+    "helmet": "4.0.0",
+    "knex": "0.21.3",
+    "objection": "2.2.2",
+    "passport": "0.4.1",
+    "passport-local": "1.0.0",
+    "pino": "6.5.0",
+    "pino-http": "5.2.0",
+    "sqlite3": "5.0.0",
+    "uuid": "8.3.0",
+    "ws": "7.3.1",
+    "zod": "1.10.2"
+  }
+}
