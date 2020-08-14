@@ -1,10 +1,11 @@
 {
+  "bail": true,
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "src/*.{js,jsx,ts,tsx}",
-    "!src/*.test.{js,jsx,ts,tsx}"
+    "packages/**/src/**/*.{js,jsx,ts,tsx}",
+    "!packages/**/src/**/*.{d,test}.{js,jsx,ts,tsx}"
   ],
-  "coverageDirectory": "coverage",
+  "coverageDirectory": "coverage/",
   "coverageReporters": ["html", "text"],
   "coverageThreshold": {
     "global": {
@@ -15,5 +16,6 @@
     }
   },
   "preset": "ts-jest/presets/js-with-ts",
+  "setupFiles": ["<rootDir>/jest.env.ts"],
   "testEnvironment": "node"
 }

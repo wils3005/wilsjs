@@ -3,6 +3,7 @@ build/
 coverage/
 node_modules/
 
-.env
+.env*
+!.env.sample
 *.code-workspace
 *.sqlite3

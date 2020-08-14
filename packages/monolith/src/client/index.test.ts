@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 
 describe("puppeteer thing", () => {
-  it("foo", () => {
+  xit("foo", () => {
     return new Promise((done) => {
       const f1 = async () => {
         const browser = await puppeteer.launch({

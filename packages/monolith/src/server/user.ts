@@ -1,5 +1,4 @@
-import * as z from "zod";
-import knex from "../knex";
+import knex from "./knex";
 import o from "objection";
 
 o.Model.knex(knex);

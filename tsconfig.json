@@ -15,6 +15,6 @@
     "strict": true,
     "target": "ES5"
   },
-  "exclude": ["**/build", "**/node_modules"],
+  "exclude": ["**/build/", "**/coverage/", "**/node_modules/"],
   "include": ["**/*.js", "**/*.ts"]
 }
