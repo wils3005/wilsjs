@@ -1,0 +1,6 @@
+{
+  "appId": "wilsjs",
+  "appName": "wilsjs",
+  "webDir": "build/",
+  "bundledWebRuntime": false
+}

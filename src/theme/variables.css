@@ -1,0 +1,16 @@
+:root {
+  --ion-toolbar-color: #3399ff;
+  --ion-toolbar-color-rgb: rgb(51, 153, 255);
+
+  --ion-tab-bar-color: #ffb380;
+  --ion-tab-bar-color-rgb: rgb(255, 179, 128);
+
+  --ion-tab-bar-color-selected: #ff8533;
+  --ion-tab-bar-color-selected-rgb: rgb(255, 133, 51);
+
+  --ion-tab-bar-background: #e6e6e6;
+  --ion-tab-bar-background-rgb: rgb(230, 230, 230);
+
+  --ion-color-primary: #ff8533;
+  --ion-color-primary-rgb: rgb(255, 133, 51);
+}

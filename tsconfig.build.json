@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/migrations", "src/seeds", "src/lambda.ts", "src/schemas.ts"]
+}

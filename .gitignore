@@ -1,0 +1,11 @@
+.vscode/
+app/
+build/
+dist/
+node_modules/
+tmp/
+
+.DS_Store
+.env*
+!.env.sample
+*.code-workspace

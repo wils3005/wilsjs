@@ -1,0 +1,77 @@
+.feedbackTable {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid darkgray;
+  border-collapse: separate;
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-family: sans-serif;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-top: 40px;
+  max-height: 400px;
+  overflow-x: auto;
+}
+.feedbackTable tr {
+  text-align: center;
+}
+.feedbackTable th {
+  border-top: none;
+}
+.feedbackTable tr.resultRow:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+}
+.feedbackTable tr:first-child {
+  border-top: none;
+}
+.feedbackTable th,
+.feedbackTable tr {
+  padding: 6px 8px;
+  border-left: 2px solid darkgray;
+  border-top: 2px solid darkgray;
+}
+.feedbackTable th:first-child {
+  border-left: none;
+}
+.pageButton {
+  display: inline-block;
+}
+p {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.filterForm {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.modal form {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.modal .closeButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  max-width: 100px;
+}
+.modal .submitButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 175px;
+  min-width: 150px;
+}
+.deleteButton {
+  margin: 0;
+  font-size: 0.9em;
+}
+.tableHolder {
+  overflow-x: auto;
+}

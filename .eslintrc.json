@@ -1,0 +1,52 @@
+{
+  "env": { "browser": true, "node": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": [
+    ".husky/",
+    "android/",
+    "build/",
+    "ios/",
+    "node_modules/",
+    "public/"
+  ],
+  "overrides": [
+    {
+      "extends": [
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:prettier/recommended"
+      ],
+      "files": ["**/*.ts", "**/*.tsx"]
+    }
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["prefer-arrow"],
+  "root": true,
+  "rules": {
+    "import/order": [
+      "warn",
+      { "alphabetize": { "order": "asc" }, "newlines-between": "always" }
+    ],
+    "prefer-arrow/prefer-arrow-functions": [
+      "warn",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": false,
+        "classPropertiesAllowed": false
+      }
+    ]
+  }
+}
