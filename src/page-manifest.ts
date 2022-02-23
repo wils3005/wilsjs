@@ -5,62 +5,52 @@ import {
   accessibility,
   newspaper,
   gameController,
-} from "ionicons/icons";
-import type { FC } from "react";
+} from 'ionicons/icons';
 
-import { EventTypes, Events, Home, Policies, Roles, Users } from "./pages";
-
-export type PageManifestItem = {
-  component: FC;
-  href: string;
-  icon: string;
-  tab: string;
-  text: string;
-};
-
-export type PageManifest = PageManifestItem[];
+import { EventTypes, Events, Home, Policies, Roles, Users } from './pages';
+import { PageManifest } from './types';
 
 export const pageManifest: PageManifest = [
   {
     component: Home,
-    href: "/home",
+    href: '/home',
     icon: home,
-    tab: "home",
-    text: "Home",
+    tab: 'home',
+    text: 'Home',
   },
   {
     component: EventTypes,
-    href: "/event-types",
+    href: '/event-types',
     icon: starHalf,
-    tab: "event-types",
-    text: "Event Types",
+    tab: 'event-types',
+    text: 'Event Types',
   },
   {
     component: Events,
-    href: "/events",
+    href: '/events',
     icon: star,
-    tab: "events",
-    text: "Events",
+    tab: 'events',
+    text: 'Events',
   },
   {
     component: Policies,
-    href: "/policies",
+    href: '/policies',
     icon: newspaper,
-    tab: "policies",
-    text: "Policies",
+    tab: 'policies',
+    text: 'Policies',
   },
   {
     component: Roles,
-    href: "/roles",
+    href: '/roles',
     icon: gameController,
-    tab: "roles",
-    text: "Roles",
+    tab: 'roles',
+    text: 'Roles',
   },
   {
     component: Users,
-    href: "/users",
+    href: '/users',
     icon: accessibility,
-    tab: "users",
-    text: "Users",
+    tab: 'users',
+    text: 'Users',
   },
 ];

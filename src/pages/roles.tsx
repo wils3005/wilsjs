@@ -18,12 +18,7 @@ import "./roles.css";
 import { Sidebar } from "../components";
 import { Alert as AlertDisplay } from "../components/alert";
 import { AlertContext, Alert } from "../context/alert-context";
-import {
-  createRecord,
-  getRecords,
-  updateRecord,
-  deleteRecord,
-} from "../crud";
+import { createRecord, getRecords, updateRecord, deleteRecord } from "../crud";
 import { pageManifest } from "../page-manifest";
 import type { RoleResource } from "../schemas";
 

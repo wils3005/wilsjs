@@ -3,6 +3,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
@@ -10,23 +13,15 @@
     "plugin:prettier/recommended"
   ],
   "ignorePatterns": [
+    ".gen/",
     ".husky/",
     "android/",
     "build/",
+    "cdktf.out/",
     "ios/",
     "node_modules/",
-    "public/"
-  ],
-  "overrides": [
-    {
-      "extends": [
-        "plugin:import/typescript",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended"
-      ],
-      "files": ["**/*.ts", "**/*.tsx"]
-    }
+    "public/",
+    "tmp/"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

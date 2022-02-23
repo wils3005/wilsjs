@@ -1,17 +1,21 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-import type { JsonObject } from "./types";
+import type { JsonObject } from './types';
 
 export const zEnv = z.object({
   ADMIN_PASSWORD: z.string(),
   ADMIN_USERNAME: z.string(),
   FASTIFY_CORS_OPTIONS: z
     .string()
-    .transform((s) => zFastifyCorsOptions.parse(JSON.parse(s))),
+    .refine((s) => zFastifyCorsOptions.parse(JSON.parse(s))),
   FASTIFY_JWT_OPTIONS: z
     .string()
-    .transform((s) => zFastifyJwtOptions.parse(JSON.parse(s))),
-  NODE_ENV: z.string(),
+    .refine((s) => zFastifyJwtOptions.parse(JSON.parse(s))),
+  PGDATABASE: z.string(),
+  PGHOST: z.string(),
+  PGPASSWORD: z.string(),
+  PGUSER: z.string(),
+  SCRYPT_KEYLEN: z.string().transform((s) => Number(s)),
 });
 
 export const zFastifyCorsOptions = z.object({
@@ -38,14 +42,14 @@ export const zRequestParams = z.object({ id: z.number() }).passthrough();
 
 export const zAbstract = z.object({
   id: z.string().uuid(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  deletedAt: z.date().nullable(),
+  created_at: z.date(),
+  updated_at: z.date(),
+  deleted_at: z.date().nullable(),
   metadata: zJsonObject,
 });
 
 export const zEvent = zAbstract.extend({
-  eventTypeId: z.string().uuid(),
+  event_type_id: z.string().uuid(),
 });
 
 export const zEventType = zAbstract.extend({
@@ -61,16 +65,17 @@ export const zRole = zAbstract.extend({
 });
 
 export const zRolePolicy = zAbstract.extend({
-  roleId: z.string().uuid(),
-  policyId: z.string().uuid(),
+  role_id: z.string().uuid(),
+  policy_id: z.string().uuid(),
 });
 
 export const zUserRole = zAbstract.extend({
-  userId: z.string().uuid(),
-  roleId: z.string().uuid(),
+  user_id: z.string().uuid(),
+  role_id: z.string().uuid(),
 });
 
 export const zUser = zAbstract.extend({
   name: z.string(),
-  password: z.string(),
+  password_hash: z.string(),
+  password_salt: z.string(),
 });

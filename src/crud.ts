@@ -1,5 +1,3 @@
-const baseUrl = "";
-
 export const createRecord = async <T>(
   path: string,
   payload: Partial<T>
@@ -79,3 +77,5 @@ export const deleteRecord = async (
     console.log(JSON.stringify(logMsg));
   }
 };
+
+const baseUrl = '';

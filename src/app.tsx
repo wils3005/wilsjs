@@ -7,14 +7,14 @@ import {
   IonTabButton,
   IonTabs,
   setupIonicReact,
-} from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
-import { FC, useState, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
+} from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
+import { FC, useState, useEffect } from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
-import "./app.css";
-import { pageManifest } from "./page-manifest";
-import icon from "./theme/img/icon.png";
+import './app.css';
+import { pageManifest } from './page-manifest';
+import icon from './theme/img/icon.png';
 
 export const App: FC = () => {
   const [loading, setLoading] = useState(false);

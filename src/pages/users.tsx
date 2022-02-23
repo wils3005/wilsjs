@@ -18,12 +18,7 @@ import "./users.css";
 import { Sidebar } from "../components";
 import { Alert as AlertDisplay } from "../components/alert";
 import { AlertContext, Alert } from "../context/alert-context";
-import {
-  getRecords,
-  createRecord,
-  updateRecord,
-  deleteRecord,
-} from "../crud";
+import { getRecords, createRecord, updateRecord, deleteRecord } from "../crud";
 import { pageManifest } from "../page-manifest";
 import type { UserResource } from "../schemas";
 
